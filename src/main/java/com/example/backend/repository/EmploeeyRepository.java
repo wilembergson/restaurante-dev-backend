@@ -10,4 +10,6 @@ public interface EmploeeyRepository extends JpaRepository<Emploeey, String> {
     UserDetails findByLogin(String login);
 
     Emploeey findByRegistration(Long registration);
+
+    Emploeey findByRole(String role);
 }

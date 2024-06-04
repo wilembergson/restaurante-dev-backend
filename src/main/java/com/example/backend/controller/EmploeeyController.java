@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.dto.*;
-import com.example.backend.model.entity.Customer;
 import com.example.backend.model.entity.Emploeey;
 import com.example.backend.security.TokenService;
 import com.example.backend.service.EmploeeyService;
@@ -28,8 +27,14 @@ public class EmploeeyController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping("/new-emploeey")
-    public ResponseEntity<Object> newEmploeeyr(@RequestBody NewEmploeeyDTO dto){
+    @PostMapping("/new-adm")
+    public ResponseEntity<Object> newAdm(@RequestBody NewEmploeeyDTO dto){
+        service.newEmploeey(dto);
+        return new ResponseEntity<>(Map.of("mensagem", "Conta criada."), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/new-waiter")
+    public ResponseEntity<Object> newWaiter(@RequestBody NewEmploeeyDTO dto){
         service.newEmploeey(dto);
         return new ResponseEntity<>(Map.of("mensagem", "Conta criada."), HttpStatus.CREATED);
     }

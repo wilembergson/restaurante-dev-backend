@@ -7,7 +7,6 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.backend.exceptions.DefaultError;
-import com.example.backend.model.entity.Customer;
 import com.example.backend.model.entity.Emploeey;
 import com.example.backend.security.dto.ValidateTokenDTO;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,22 +22,6 @@ public class TokenService {
 
     @Value("${api.security.token.secret}")
     private String secret;
-
-    public String generateCustomerToken(Customer usr) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create()
-                    .withIssuer("devmotel-auth-api")
-                    .withSubject(usr.getLogin())
-                    .withClaim("role", usr.getRole())
-                    .withClaim("cpf", usr.getCpf())
-                    .withExpiresAt(tempoExpiracao())
-                    .sign(algorithm);
-            return token;
-        } catch (JWTCreationException exception) {
-            throw new RuntimeException("Erro na geração do token.", exception);
-        }
-    }
 
     public String generateEmploeeyToken(Emploeey usr) {
         try {

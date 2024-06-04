@@ -1,8 +1,7 @@
 package com.example.backend.utils;
 
 public enum RolesEnum {
-    CUSTOMER("CUSTOMER"),
-    EMPLOEEY("EMPLOEEY"),
+    WAITER("WAITER"),
     ADMIN("ADMIN");
 
     private final String roleName;

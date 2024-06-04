@@ -7,6 +7,8 @@ public class NewEmploeeyDTO {
 
     private String name;
 
+    private Long cpf;
+
     private Long registration;
 
     private Long phone;
@@ -16,5 +18,7 @@ public class NewEmploeeyDTO {
     private String username;
 
     private String password;
+
+    private String role;
 
 }

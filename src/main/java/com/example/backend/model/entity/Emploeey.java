@@ -16,20 +16,16 @@ import java.util.List;
 @NoArgsConstructor
 public class Emploeey extends GeneralUser{
 
-    public Emploeey(String id, String name, Long phone, String email, String login, String password, boolean active, Long registration, String role) {
-        super(id, name, phone, email, login, password, active, role);
-        this.registration = registration;
+    public Emploeey(String id, String name, Long cpf, Long registration, Long phone, String email, String login, String password, boolean active, String role) {
+        super(id, name, cpf, registration, phone, email, login, password, active, role);
     }
-
-    @Column(name = "registration", unique = true)
-    private Long registration;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(getRole() == RolesEnum.ADMIN.getRoleName()){
             return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.ADMIN.getRoleName()));
         }else{
-            return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.EMPLOEEY.getRoleName()));
+            return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.WAITER.getRoleName()));
         }
     }
 

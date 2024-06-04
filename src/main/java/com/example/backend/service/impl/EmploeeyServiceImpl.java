@@ -1,15 +1,10 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceptions.DefaultError;
-import com.example.backend.model.dto.CustomerInfoDTO;
 import com.example.backend.model.dto.EmploeeyInfoDTO;
-import com.example.backend.model.dto.NewCustomerDTO;
 import com.example.backend.model.dto.NewEmploeeyDTO;
-import com.example.backend.model.entity.Customer;
 import com.example.backend.model.entity.Emploeey;
-import com.example.backend.repository.CustomerRepository;
 import com.example.backend.repository.EmploeeyRepository;
-import com.example.backend.service.CustomerService;
 import com.example.backend.service.EmploeeyService;
 import com.example.backend.utils.RolesEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +25,14 @@ public class EmploeeyServiceImpl implements EmploeeyService {
         Emploeey emploeey = new Emploeey(
                 UUID.randomUUID().toString(),
                 dto.getName(),
+                dto.getCpf(),
+                dto.getRegistration(),
                 dto.getPhone(),
                 dto.getEmail(),
                 dto.getUsername(),
                 encryptedPassword,
                 true,
-                dto.getRegistration(),
-                RolesEnum.EMPLOEEY.getRoleName()
+                dto.getRole()
         );
         repository.save(emploeey);
     }

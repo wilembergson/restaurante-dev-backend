@@ -19,6 +19,12 @@ public abstract class GeneralUser implements UserDetails {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "cpf")
+    private Long cpf;
+
+    @Column(name = "registration")
+    private Long registration;
+
     @Column(name = "phone")
     private Long phone;
 
