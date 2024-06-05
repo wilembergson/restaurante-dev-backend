@@ -9,10 +9,6 @@ public record EmploeeyInfoDTO(
 
         Long phone,
 
-        String email,
-
-        String username,
-
-        String role
+        String email
 ) {
 }

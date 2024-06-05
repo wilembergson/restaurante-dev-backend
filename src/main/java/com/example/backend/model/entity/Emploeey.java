@@ -1,8 +1,8 @@
 package com.example.backend.model.entity;
 
 import com.example.backend.utils.RolesEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,45 +12,28 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "emploeey")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class Emploeey extends GeneralUser{
+public class Emploeey{
 
-    public Emploeey(String id, String name, Long cpf, Long registration, Long phone, String email, String login, String password, boolean active, String role) {
-        super(id, name, cpf, registration, phone, email, login, password, active, role);
-    }
+    @Id
+    private String id;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(getRole() == RolesEnum.ADMIN.getRoleName()){
-            return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.ADMIN.getRoleName()));
-        }else{
-            return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.WAITER.getRoleName()));
-        }
-    }
+    @Column(name = "name")
+    private String name;
 
-    @Override
-    public String getUsername() {
-        return getLogin();
-    }
+    @Column(name = "cpf")
+    private Long cpf;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+    @Column(name = "registration")
+    private Long registration;
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    @Column(name = "phone")
+    private Long phone;
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+    @Column(name = "email")
+    private String email;
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

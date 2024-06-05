@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/new-adm")).hasRole(RolesEnum.ADMIN.getRoleName())
+                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/auth/login")).permitAll()
                         .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/new-waiter")).hasRole(RolesEnum.ADMIN.getRoleName())
                         .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/login")).permitAll()
                         .requestMatchers(mvc.pattern(HttpMethod.GET, "/emploeey/get-informations")).permitAll()

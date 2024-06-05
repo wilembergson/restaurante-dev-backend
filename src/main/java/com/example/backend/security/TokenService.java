@@ -7,7 +7,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.backend.exceptions.DefaultError;
-import com.example.backend.model.entity.Emploeey;
+import com.example.backend.model.entity.EmploeeyUsr;
 import com.example.backend.security.dto.ValidateTokenDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,13 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generateEmploeeyToken(Emploeey usr) {
+    public String generateEmploeeyToken(EmploeeyUsr usr) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("devmotel-auth-api")
                     .withSubject(usr.getLogin())
                     .withClaim("role", usr.getRole())
-                    .withClaim("registration", usr.getRegistration())
                     .withExpiresAt(tempoExpiracao())
                     .sign(algorithm);
             return token;
@@ -58,12 +57,6 @@ public class TokenService {
         String login = decodedJWT.getSubject();
         String role = decodedJWT.getClaim("role").asString();
         return new ValidateTokenDTO(login, role);
-    }
-
-    public Long getCustomerCpf(String requestToken) {
-        String token = requestToken.replace("Bearer ", "");
-        DecodedJWT decodedJWT = getDecodeJWT(token);
-        return decodedJWT.getClaim("cpf").asLong();
     }
 
     public Long getEmploeeyRegistration(String requestToken) {

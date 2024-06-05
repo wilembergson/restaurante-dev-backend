@@ -6,7 +6,6 @@ import com.example.backend.model.dto.NewEmploeeyDTO;
 import com.example.backend.model.entity.Emploeey;
 import com.example.backend.repository.EmploeeyRepository;
 import com.example.backend.service.EmploeeyService;
-import com.example.backend.utils.RolesEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,11 +27,7 @@ public class EmploeeyServiceImpl implements EmploeeyService {
                 dto.getCpf(),
                 dto.getRegistration(),
                 dto.getPhone(),
-                dto.getEmail(),
-                dto.getUsername(),
-                encryptedPassword,
-                true,
-                dto.getRole()
+                dto.getEmail()
         );
         repository.save(emploeey);
     }
@@ -44,9 +39,7 @@ public class EmploeeyServiceImpl implements EmploeeyService {
                 emploeey.getName(),
                 emploeey.getRegistration(),
                 emploeey.getPhone(),
-                emploeey.getEmail(),
-                emploeey.getLogin(),
-                emploeey.getRole()
+                emploeey.getEmail()
         );
 
     }
