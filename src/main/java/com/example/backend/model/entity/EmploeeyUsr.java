@@ -36,7 +36,7 @@ public class EmploeeyUsr implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(getRole() == RolesEnum.ADMIN.getRoleName()){
+        if(getRole().equals(RolesEnum.ADMIN.getRoleName())){
             return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.ADMIN.getRoleName()));
         }else{
             return List.of(new SimpleGrantedAuthority("ROLE_"+RolesEnum.WAITER.getRoleName()));

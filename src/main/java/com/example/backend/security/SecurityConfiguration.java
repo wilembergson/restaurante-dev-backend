@@ -45,8 +45,8 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(mvc.pattern(HttpMethod.POST, "/auth/login")).permitAll()
-                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/new-waiter")).hasRole(RolesEnum.ADMIN.getRoleName())
-                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/login")).permitAll()
+                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/register")).hasRole(RolesEnum.ADMIN.getRoleName())
+                        .requestMatchers(mvc.pattern(HttpMethod.POST, "/emploeey/new-user")).hasRole(RolesEnum.ADMIN.getRoleName())
                         .requestMatchers(mvc.pattern(HttpMethod.GET, "/emploeey/get-informations")).permitAll()
                         .anyRequest().authenticated()
                 )

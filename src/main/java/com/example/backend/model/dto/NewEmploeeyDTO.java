@@ -14,11 +14,4 @@ public class NewEmploeeyDTO {
     private Long phone;
 
     private String email;
-
-    private String username;
-
-    private String password;
-
-    private String role;
-
 }

@@ -27,30 +27,16 @@ public class EmploeeyController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping("/new-adm")
-    public ResponseEntity<Object> newAdm(@RequestBody NewEmploeeyDTO dto){
+    @PostMapping("/register")
+    public ResponseEntity<Object> newEmploeey(@RequestBody NewEmploeeyDTO dto){
         service.newEmploeey(dto);
         return new ResponseEntity<>(Map.of("mensagem", "Conta criada."), HttpStatus.CREATED);
     }
 
-    @PostMapping("/new-waiter")
-    public ResponseEntity<Object> newWaiter(@RequestBody NewEmploeeyDTO dto){
-        service.newEmploeey(dto);
-        return new ResponseEntity<>(Map.of("mensagem", "Conta criada."), HttpStatus.CREATED);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDTO loginDTO){
-        try {
-            var usernamePassword = new UsernamePasswordAuthenticationToken(loginDTO.login(), loginDTO.password());
-            var auth = this.authenticationManager.authenticate(usernamePassword);
-            var token = tokenService.generateEmploeeyToken((EmploeeyUsr) auth.getPrincipal());
-            return ResponseEntity.ok(new LoginResponseDTO(token));
-        }catch (Exception e){
-            return ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
-                    .body(Map.of("mensagem", "Usuário ou senha incorretos."));
-        }
+    @PostMapping("/new-user")
+    public ResponseEntity<Object> newUser(@RequestBody NewUserDTO dto){
+        service.newUser(dto);
+        return new ResponseEntity<>(Map.of("mensagem", "Usuario criado."), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-informations")
