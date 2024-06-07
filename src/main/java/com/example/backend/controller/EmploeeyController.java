@@ -33,9 +33,9 @@ public class EmploeeyController {
         return new ResponseEntity<>(Map.of("mensagem", "Conta criada."), HttpStatus.CREATED);
     }
 
-    @PostMapping("/new-user")
-    public ResponseEntity<Object> newUser(@RequestBody NewUserDTO dto){
-        service.newUser(dto);
+    @PostMapping("/new-user/{registration}")
+    public ResponseEntity<Object> newUser(@PathVariable String registration, @RequestBody NewUserDTO dto){
+        service.newUser(registration, dto);
         return new ResponseEntity<>(Map.of("mensagem", "Usuario criado."), HttpStatus.CREATED);
     }
 
@@ -45,4 +45,5 @@ public class EmploeeyController {
         EmploeeyInfoDTO emploeey = service.getEmploeeyByRegistration(registration);
         return ResponseEntity.ok(emploeey);
     }
+
 }

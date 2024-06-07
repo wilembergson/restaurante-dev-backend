@@ -34,6 +34,10 @@ public class EmploeeyUsr implements UserDetails {
     @Column(name = "role")
     private String role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emploeey_id", referencedColumnName = "id")
+    private Emploeey emploeey;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(getRole().equals(RolesEnum.ADMIN.getRoleName())){

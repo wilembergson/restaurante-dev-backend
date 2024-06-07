@@ -11,5 +11,5 @@ public interface EmploeeyService {
 
     EmploeeyInfoDTO getEmploeeyByRegistration(Long registration);
 
-    void newUser(NewUserDTO dto);
+    void newUser(String user_registration, NewUserDTO dto);
 }

@@ -36,4 +36,7 @@ public class Emploeey{
     @Column(name = "email")
     private String email;
 
+    @OneToOne(mappedBy = "emploeey")
+    private EmploeeyUsr emploeeyUsr;
+
 }

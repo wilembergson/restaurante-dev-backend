@@ -29,6 +29,8 @@ public class TokenService {
             String token = JWT.create()
                     .withIssuer("devmotel-auth-api")
                     .withSubject(usr.getLogin())
+                    .withClaim("registration",
+                            (usr.getEmploeey() != null) ? usr.getEmploeey().getRegistration() : 00000)
                     .withClaim("role", usr.getRole())
                     .withExpiresAt(tempoExpiracao())
                     .sign(algorithm);

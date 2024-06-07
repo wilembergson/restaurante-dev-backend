@@ -18,15 +18,14 @@ public class UserAdminLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Verifica se o usuário ADMIN já existe
         if (userRepository.findByRole(RolesEnum.ADMIN.getRoleName()).isEmpty()) {
-            // Cria o usuário ADMIN inicial
             EmploeeyUsr admin = new EmploeeyUsr(
                     UUID.randomUUID().toString(),
                     "admin.user",
                     new BCryptPasswordEncoder().encode("admin123"),
                     true,
-                    RolesEnum.ADMIN.getRoleName()
+                    RolesEnum.ADMIN.getRoleName(),
+                    null
             );
             userRepository.save(admin);
         }
